@@ -22,6 +22,7 @@ int tooniePinVal = 0;
 // Current amount of money the user inserted 
 int currentsum = 0;
 
+int itemprice =  0;  // The price of the item user selected
 
 
 unsigned long startTime;
@@ -72,14 +73,21 @@ void payment()
 }
 void checkcoin()
 {
-  if (IRvalueD==0)
+  if (quarterPinVal==0)
   {
     currentsum += 0.25;
     delay(200);
   }
-  
- 
+  if (looniePinVal==0)
+  {
+    currentsum += 1;
+    delay(200);
   }
+//   if (tooniePinVal==0)
+//   {
+//     currentsum += 2;
+//     delay(200);
+//   }
 void setup(){
   Serial.begin(9600);
   lcd.backlight();
