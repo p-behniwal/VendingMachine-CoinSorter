@@ -10,7 +10,7 @@ const int pinLED = 9;
 int IRvalueA = 0;
 int IRvalueD = 0;
 
-
+int currentsum = 0;
 unsigned long startTime;
 unsigned long stopTime;
 boolean pressed = false;
@@ -33,6 +33,7 @@ Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS)
 LiquidCrystal_I2C lcd(0x3F, 20, 4);  
 
 void welcome(){
+  currentsum = 0;
   lcd.clear();
   lcd.print("Please enter");
   lcd.setCursor(0,1);
@@ -54,6 +55,15 @@ void payment()
   lcd.print(prices[index]);
   
 }
+void checkcoin()
+{
+  if (IRvalueD==0)
+  {
+    currentsum += 0.25;
+  }
+  
+
+  }
 void setup(){
   Serial.begin(9600);
   lcd.backlight();
@@ -71,7 +81,6 @@ void loop(){
  
  if ((stopTime-startTime)>10000) 
  {
-  
   welcome();
   Serial.println(stopTime-startTime);
   delay(1000);
@@ -87,7 +96,7 @@ void loop(){
       lcd.clear();
       lcd.setCursor(0, 0); 
       lcd.print(s);
-//      Serial.println(customKey);
+
     }
     if (s.length()==2){
       
