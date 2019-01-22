@@ -7,10 +7,19 @@ const byte COLS = 4;
 const int pinIRd = 11;
 const int pinIRa = A0;
 const int pinLED = 9;
+// Digital Pins for infrared sensors
+const int quarterPin = 11;
+const int looniePin = 12;
+const int twoniePin = 13;
+
 int IRvalueA = 0;
 int IRvalueD = 0;
 
+// Current amount of money the user inserted 
 int currentsum = 0;
+
+
+
 unsigned long startTime;
 unsigned long stopTime;
 boolean pressed = false;
@@ -32,6 +41,8 @@ Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS)
 
 LiquidCrystal_I2C lcd(0x3F, 20, 4);  
 
+//Welcome Screen
+//This function is called at the beginning or when the user has no inputed anything for more thant 10 seconds.
 void welcome(){
   currentsum = 0;
   lcd.clear();
@@ -61,8 +72,7 @@ void checkcoin()
   {
     currentsum += 0.25;
   }
-  
-
+ 
   }
 void setup(){
   Serial.begin(9600);
