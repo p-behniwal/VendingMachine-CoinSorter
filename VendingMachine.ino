@@ -10,11 +10,15 @@ const int pinLED = 9;
 // Digital Pins for infrared sensors
 const int quarterPin = 11;
 const int looniePin = 12;
-const int twoniePin = 13;
+const int tooniePin = 13;
 
 int IRvalueA = 0;
 int IRvalueD = 0;
 
+//Digital Pin value for the three sensors
+int quarterPinVal = 0;
+int looniePinVal = 0;
+int tooniePinVal = 0;
 // Current amount of money the user inserted 
 int currentsum = 0;
 
