@@ -75,7 +75,9 @@ void checkcoin()
   if (IRvalueD==0)
   {
     currentsum += 0.25;
+    delay(200);
   }
+  
  
   }
 void setup(){
@@ -93,6 +95,10 @@ void loop(){
  IRvalueA = analogRead(pinIRa);
  IRvalueD = digitalRead(pinIRd);
  
+ 
+// quarterPinVal = digitalRead(quarterPin);
+// looniePinVal = digitalRead(looniePin);
+// tooniePinVal  digitalRead (tooniePin);
  if ((stopTime-startTime)>10000) 
  {
   welcome();
