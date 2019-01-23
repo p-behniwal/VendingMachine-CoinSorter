@@ -97,11 +97,13 @@ void setup(){
   welcome();
   pinMode(pinIRd,INPUT);
   pinMode(pinIRa,INPUT);
+  pinMode(quarterPin,INPUT);
+  pinMOde(looniePin,INPUT);
   
 }
 
 void loop(){
- stopTime=millis();
+ 
  IRvalueA = analogRead(pinIRa);
  IRvalueD = digitalRead(pinIRd);
  
@@ -130,7 +132,7 @@ void loop(){
   
 // quarterPinVal = digitalRead(quarterPin);
 // looniePinVal = digitalRead(looniePin);
-// tooniePinVal  digitalRead (tooniePin);
+// tooniePinVal = digitalRead (tooniePin);
  if ((stopTime-startTime)>10000) 
  {
   welcome();
@@ -141,20 +143,30 @@ void loop(){
   
   char customKey = customKeypad.getKey();
   if (customKey){
-    if (s.length()<2)
+    if (customKey=='#'){
+      welcome();
+    }
+    else
     {
-      s=s+customKey;
-      startTime = millis();
-      lcd.clear();
-      lcd.setCursor(0, 0); 
-      lcd.print(s);
+      
 
-    }
-    if (s.length()==2){
-      
-      payment();
-      s="";
-      
-    }
+  
+
+      if (s.length()<2)
+      {
+        s=s+customKey;
+        startTime = millis();
+        lcd.clear();
+        lcd.setCursor(0, 0); 
+        lcd.print(s);
+
+      }
+      if (s.length()==2){
+
+        payment();
+        s="";
+
+      }
   }
+ }
 }
