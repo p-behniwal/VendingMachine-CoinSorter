@@ -24,9 +24,11 @@ int currentsum = 0;
 
 int itemprice =  0;  // The price of the item user selected
 
-
+//Use time to check how long user didn't respond.
 unsigned long startTime;
 unsigned long stopTime;
+
+
 boolean pressed = false;
 String items []  = {"A1", "A2"};
 double prices []  = {3.00,2.50};
@@ -103,7 +105,29 @@ void loop(){
  IRvalueA = analogRead(pinIRa);
  IRvalueD = digitalRead(pinIRd);
  
- 
+ quarterPinVal=digitalRead(quarterPin);
+ looniePinVal=digitalRead(looniePin);
+ tooniePinVal=digitalRead(tooniePin);
+  
+ if (looniePinVal == 0)
+ {
+   Serial.println("Loonie went through!");
+   delay(200);
+ }
+ if (quarterPinVal == 0)
+ {
+   Serial.println("Quarter went through!");
+   delay(200);
+ }
+ if (tooniePinVal == 0)
+ {
+   Serial.println("Toonie went through!");
+   delay(200);
+   
+ }
+
+
+  
 // quarterPinVal = digitalRead(quarterPin);
 // looniePinVal = digitalRead(looniePin);
 // tooniePinVal  digitalRead (tooniePin);
@@ -113,7 +137,7 @@ void loop(){
   Serial.println(stopTime-startTime);
   delay(1000);
  }
-// if ((stopTime-startTime)>)
+
   
   char customKey = customKeypad.getKey();
   if (customKey){
