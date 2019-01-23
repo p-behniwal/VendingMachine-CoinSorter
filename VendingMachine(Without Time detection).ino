@@ -119,12 +119,7 @@ void loop(){
    currentesum+=0.25;
    delay(200);
  }
-// if (tooniePinVal == 0)
-// {
-//   Serial.println("Toonie went through!");
-//   delay(200);
-//   
-// }
+
 
   
   checkcoin();
@@ -151,6 +146,6 @@ void loop(){
         s="";
 
       }
-  }
- }
+    }
+   }
 }
