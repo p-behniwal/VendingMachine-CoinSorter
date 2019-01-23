@@ -22,7 +22,7 @@ int tooniePinVal = 0;
 // Current amount of money the user inserted 
 int currentsum = 0;
 
-int itemprice =  0;  // The price of the item user selected
+double itemprice =  0;  // The price of the item user selected
 
 //Use time to check how long user didn't respond.
 unsigned long startTime;
@@ -71,25 +71,21 @@ void payment()
   if (!flag) {lcd.print("Item not found");return;}
   lcd.print("$");
   lcd.print(prices[index]);
+  itemprice=prices[index];
   
 }
 void checkcoin()
 {
-  if (quarterPinVal==0)
+  if (cuurentsum == itemprice && currentsum !=0)
   {
-    currentsum += 0.25;
-    delay(200);
+    // Turn servos
+    welcome();
   }
-  if (looniePinVal==0)
-  {
-    currentsum += 1;
-    delay(200);
-  }
-//   if (tooniePinVal==0)
-//   {
-//     currentsum += 2;
-//     delay(200);
-//   }
+  
+
+  
+}
+
 void setup(){
   Serial.begin(9600);
   lcd.backlight();
@@ -98,7 +94,7 @@ void setup(){
   pinMode(pinIRd,INPUT);
   pinMode(pinIRa,INPUT);
   pinMode(quarterPin,INPUT);
-  pinMOde(looniePin,INPUT);
+  pinMode(looniePin,INPUT);
   
 }
 
@@ -109,38 +105,29 @@ void loop(){
  
  quarterPinVal=digitalRead(quarterPin);
  looniePinVal=digitalRead(looniePin);
- tooniePinVal=digitalRead(tooniePin);
+ //tooniePinVal=digitalRead(tooniePin);
   
  if (looniePinVal == 0)
  {
    Serial.println("Loonie went through!");
+   currentsum+=1;
    delay(200);
  }
  if (quarterPinVal == 0)
  {
    Serial.println("Quarter went through!");
+   currentesum+=0.25;
    delay(200);
  }
- if (tooniePinVal == 0)
- {
-   Serial.println("Toonie went through!");
-   delay(200);
-   
- }
-
-
-  
-// quarterPinVal = digitalRead(quarterPin);
-// looniePinVal = digitalRead(looniePin);
-// tooniePinVal = digitalRead (tooniePin);
- if ((stopTime-startTime)>10000) 
- {
-  welcome();
-  Serial.println(stopTime-startTime);
-  delay(1000);
- }
+// if (tooniePinVal == 0)
+// {
+//   Serial.println("Toonie went through!");
+//   delay(200);
+//   
+// }
 
   
+  checkcoin();
   char customKey = customKeypad.getKey();
   if (customKey){
     if (customKey=='#'){
@@ -149,9 +136,6 @@ void loop(){
     else
     {
       
-
-  
-
       if (s.length()<2)
       {
         s=s+customKey;
