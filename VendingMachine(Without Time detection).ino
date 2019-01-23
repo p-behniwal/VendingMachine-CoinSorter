@@ -7,6 +7,7 @@ const byte COLS = 4;
 const int pinIRd = 11;
 const int pinIRa = A0;
 const int pinLED = 9;
+
 // Digital Pins for infrared sensors
 const int quarterPin = 11;
 const int looniePin = 12;
@@ -49,7 +50,7 @@ Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS)
 LiquidCrystal_I2C lcd(0x3F, 20, 4);  
 
 //Welcome Screen
-//This function is called at the beginning or when the user has no inputed anything for more thant 10 seconds.
+//This function is called at the beginning or when the user has inputed the '#' sign to go back to the welcome screen.
 void welcome(){
   currentsum = 0;
   lcd.clear();
@@ -74,6 +75,8 @@ void payment()
   itemprice=prices[index];
   
 }
+
+// Check if the user inserted enough coin for the item
 void checkcoin()
 {
   if (cuurentsum == itemprice && currentsum !=0)
@@ -81,9 +84,6 @@ void checkcoin()
     // Turn servos
     welcome();
   }
-  
-
-  
 }
 
 void setup(){
