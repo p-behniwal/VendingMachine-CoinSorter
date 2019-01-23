@@ -11,7 +11,7 @@ const int pinLED = 9;
 // Digital Pins for infrared sensors
 const int quarterPin = 11;
 const int looniePin = 12;
-const int tooniePin = 13;
+//const int tooniePin = 13;
 
 int IRvalueA = 0;
 int IRvalueD = 0;
