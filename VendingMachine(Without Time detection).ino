@@ -79,7 +79,7 @@ void payment()
 // Check if the user inserted enough coin for the item
 void checkcoin()
 {
-  if (cuurentsum == itemprice && currentsum !=0)
+  if (currentsum == itemprice && currentsum !=0)
   {
     // Turn servos
     welcome();
@@ -116,7 +116,7 @@ void loop(){
  if (quarterPinVal == 0)
  {
    Serial.println("Quarter went through!");
-   currentesum+=0.25;
+   currentsum+=0.25;
    delay(200);
  }
 
